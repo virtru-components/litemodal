@@ -1,0 +1,25 @@
+{
+  "name": "litemodal",
+  "description": "lite-Modal component",
+  "version": "0.0.1",
+  "keywords": ["dialog", "ui", "modal"],
+  "dependencies": {
+    "component/emitter": "1.0.0",
+    "component/jquery": "*"
+  },
+  "main": "lib/index.js",
+  "scripts": [
+    "lib/container.js",
+    "lib/frame.js",
+    "lib/index.js", 
+    "lib/overlay.js",
+    "templates/modal-template.js"
+  ],
+  "testScripts": [
+    "tests/index.js"
+  ],
+  "styles": [
+    "css/overlay.css",
+    "css/virtru.css"
+  ]
+}

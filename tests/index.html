@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Lite Modal Dialog </title>
+<meta name='author' content='Ramon C. Gonzales' />
+
+<!-- Page styles -->
+<link rel="stylesheet" href="../build/build.css" />
+<!-- link rel="stylesheet" href="./css/virtru.css" / -->
+
+<!-- JS files are loaded at the bottom of the page -->
+</head>
+<body>
+    <title>Modal</title>
+<!-- Load JavaScript files -->
+    <script src="../build/build.js"></script>
+    <script>
+      var dialog = require('litemodal/lib'),
+          $ = require('component-jquery');
+      // This is just a quick copy-paste of the contents of alpha-user-onboard.html template
+      var html ='<div class="virtru-modal virtru-alpha-user-onboard modal">\n    <div class="modal-body">\n        <a href="javascript:void(0)" class="virtru-close close">&times;</a>\n        <div class="virtru-title">\n            Hi! Welcome to Virtru Alpha!\n        </div>\n        <div class="virtru-message">\n            <p>\n            We\'re excited you\'ve joined us for our alpha release! An alpha\n            release is basically a rough sketch. The core technology is built,\n            but the there\'s a lot of fixing and polishing we still need to do.\n            So, some things may not work as well as they should, but with your\n            help we hope to make this amazing\n            </p>\n            <div class="is-not-alpha">\n                <h4>Read secure emails!</h4>\n                <p>\n                With the Virtru plugin, you have the unique ability to read\n                secure emails. Currently, writing secure emails is by\n                invitation only. If you are interested in writing secure\n                emails, please sign up at <a\n                href="http://www.virtru.com">http://www.virtru.com</a> to be\n                queued for our beta release.\n                </p>\n                <p>\n                So, to get started, press the button below!\n                </p>\n            </div>\n            <div class="is-alpha" style="display: none">\n                <h4>Read and write secure emails!</h4>\n                <p>\n                As one of our Elite Alpha users, you have the unique ability to read and write secure emails. Other individuals you send secure emails to will only be able to read your messages. Eventually, we\'ll allow everyone to read and write secure emails, but for now, we would like only you and other invited guests to test drive Virtru.\n                </p>\n                <p>\n                So, to get started, press the button below!\n                </p>\n            </div>\n            <a href="javascript:void(0)" class="virtru-button">Get started</a>\n        </div>\n    </div>\n</div>\n'; 
+     var element = $(html);
+
+     // Define the 'onShow' callback that will set the actions for the button
+     var onShow = function(el) {
+       // The 'this' here refers to the modal-dialog (aka: Dialog object),
+       // which is the same 'modal' as on the sample-call below.
+       // 'el' is the same jquery-element that was passed-in (the html template)
+       // to the 'initial call' below.
+console.log('local onShow');
+         // Prepare the Get Started button
+        var self = this;
+        var getStartedButton = el.find('.virtru-button');
+        getStartedButton.one('click', function() {
+          if (!self.clicked) {
+            self.clicked = true;
+            self.emit('done');
+            alert("Good! Let's get started");
+          }
+          // Close the modal-dialog
+          self.close();
+        });
+     };
+
+     // Define custom overlay-CSS
+     var overlayCss = {
+        "background": "#ffff99",
+        "opacity": "0.5"
+     };
+
+     // Define the options
+     var options = {
+        overlayCss: overlayCss,
+        onShow: onShow
+     };
+
+     // Call the modal-dialog in 1 of 3 ways
+//     var modal = dialog.init(element);
+     var modal = element.modal(options);
+//     var modal = dialog.init(element, options);
+     modal.open(element);
+     modal.on('hide', function() {
+       console.log('hiding now');
+     });
+     console.log(modal);
+
+    </script>
+</body>
+</html>
