@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> LiteModal Basic Modal Dialog </title>
+<meta name='author' content='Ramon C. Gonzales' />
+<meta name='copyright' content='2013 - Ramon C. Gonzales' />
+
+<script type='text/javascript' src='../build/build.js'></script>
+<!-- Page styles -->
+<!-- For the time-being, using the following demo.css to style this page -->
+<!-- This page is simply used to provide the 'backdrop' screen to show that
+     the modal dialog is working -->
+<link type='text/css' href='css/demo.css' rel='stylesheet' media='screen' />
+
+<!-- The main 'build.css' for dialog-lite (aka: LiteModal) -->
+<link type='text/css' href='../build/build.css' rel='stylesheet' media='screen' />
+
+<!-- JS files are loaded at the bottom of the page -->
+</head>
+<body>
+<div id='container'>
+	<div id='logo'>
+		<h1>lite<span>Modal</span></h1>
+		<span class='title'>Modal Dialog Framework </span>
+	</div>
+	<div id='content'>
+		<div id='basic-modal'>
+			<h3>Sample Modal Dialog</h3>
+			<p>A sample modal dialog with minimal styling and no additional options. There are a few CSS properties set internally , however, LiteModal can also use external CSS for the look and feel.</p>
+                       <p> This demo is a <em>Work-In-Progress</em>. The button below does not yet work. However, reload the page and a sample dialog window will pop-up</p>
+			<input type='button' name='basic' value='Demo' class='basic'/> or <a href='#' class='basic'>Demo</a>
+		</div>
+		
+	</div>
+	<div id='footer'>
+		&copy; 2013 <a href='#'>Ramon C. Gonzales</a> and <a href='#'>Virtru Corporation</a><br/>
+	</div>
+</div>
+
+</body>    
+  <script>
+      // Load the dependencies
+      var dialog = require('litemodal/lib'),
+          $ = require('component-jquery');
+
+     // ==================================================================== //
+     // This is just a quick copy-paste of the contents of 
+     //  alpha-user-onboard.html template
+     // Normally, this would be "require'd" within the JS code.
+     // ==================================================================== //
+      var html ='<div class="virtru-modal virtru-alpha-user-onboard modal">\n    <div class="modal-body">\n        <a href="javascript:void(0)" class="virtru-close close">&times;</a>\n        <div class="virtru-title">\n            Hi! Welcome to Virtru Alpha!\n        </div>\n        <div class="virtru-message">\n            <p>\n            We\'re excited you\'ve joined us for our alpha release! An alpha\n            release is basically a rough sketch. The core technology is built,\n            but the there\'s a lot of fixing and polishing we still need to do.\n            So, some things may not work as well as they should, but with your\n            help we hope to make this amazing\n            </p>\n            <div class="is-not-alpha">\n                <h4>Read secure emails!</h4>\n                <p>\n                With the Virtru plugin, you have the unique ability to read\n                secure emails. Currently, writing secure emails is by\n                invitation only. If you are interested in writing secure\n                emails, please sign up at <a\n                href="http://www.virtru.com">http://www.virtru.com</a> to be\n                queued for our beta release.\n                </p>\n                <p>\n                So, to get started, press the button below!\n                </p>\n            </div>\n            <div class="is-alpha" style="display: none">\n                <h4>Read and write secure emails!</h4>\n                <p>\n                As one of our Elite Alpha users, you have the unique ability to read and write secure emails. Other individuals you send secure emails to will only be able to read your messages. Eventually, we\'ll allow everyone to read and write secure emails, but for now, we would like only you and other invited guests to test drive Virtru.\n                </p>\n                <p>\n                So, to get started, press the button below!\n                </p>\n            </div>\n            <a href="javascript:void(0)" class="virtru-button">Get started</a>\n        </div>\n    </div>\n</div>\n'; 
+     var element = $(html);
+     // Change the elements displayed
+     element.find('.is-not-alpha').hide();
+     var isAlphaEl = element.find('.is-alpha').show();
+     isAlphaEl.css({
+       "display": "block"
+     });
+
+     // ==================================================================== //
+
+     // ==================================================================== //
+     // Define the 'onShow' callback that will set the actions for the button
+     // ==================================================================== //
+     var onShow = function(el) {
+       // The 'this' here refers to the modal-dialog (aka: Dialog object),
+       // which is the same 'modal' as on the sample-call below.
+       // 'el' is the same jquery-element that was passed-in (the html template)
+       // to the 'initial call' below.
+console.log('local onShow');
+         // Prepare the Get Started button
+        var self = this;
+        var getStartedButton = el.find('.virtru-button');
+        getStartedButton.one('click', function() {
+          if (!self.clicked) {
+            self.clicked = true;
+            self.emit('done');
+            alert("Good! Let's get started");
+          }
+          // Close the modal-dialog
+          self.close();
+        });
+     };
+
+     // ==================================================================== //
+     // Define custom overlay-CSS
+     // ==================================================================== //
+     var overlayCss = {
+        "background": "#ffff99",
+        "opacity": "0.5"
+     };
+
+     // ==================================================================== //
+     // Define the user-options
+     // ==================================================================== //
+     var options = {
+        overlayCss: overlayCss,
+        onShow: onShow
+     };
+
+     // ==================================================================== //
+     // Call the modal-dialog either as jQuery-style, or direct instantiation
+     // ==================================================================== //
+     var run_style = 1;
+     var modal = null;
+     if (run_style === 1) {
+       modal = element.modal(options);            // 1 - As a jQuery plugin
+                                                  //   - Instantiate and open the dialog
+     } else {
+        if ( run_style === 2) {
+           modal = dialog.init(element, options); // 2 - Direct object instantiation, with options
+        } else {
+           modal = dialog.init(element);          // 3 - Direct object instantiation, No options
+        }
+         modal.open(element);                     // Open the modal dialog
+     }
+     console.log(modal);
+
+  </script>
+</html>
