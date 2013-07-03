@@ -7,14 +7,14 @@ At the present time (06/25/2013), this plugin is functional as a pre-Alpha
 SW. 
 
 For certain features, it is meant to provide some basic plug-and-play 
-compatibility with SimpleModal. 
+compatibility with SimpleModal (on some of the features).
 
 However, it is not meant to match SimpleModal feature-for-feature, but only to
 match certain features that Virtru is currently using.
 
 It is pre-Alpha mainly since it hasn't been extensively tested as a plugin
 for the Virtru API. However, it has been tested for functionality on the 
-features that it is meant to serve (as replacement for SimpleModal).
+features that it is meant to serve.
 
 It also offers certain features that (may be or) may not be in SimpleModal.
 Again, this module was only written as a quick replacement and (most emphatically)
@@ -70,11 +70,14 @@ These files are referenced by the samples below.
 Examples
 -----------------
 
-There are currently 2 html files that shows some of the features.
+There are currently 3 html files that shows some of the features.
+ - The html files should be opened directly by the browser.
+ - Tested on Firefox, Chrome and Safari, so far.
 
 More samples will hopefully be created later, as well as improving this document.
 
 
-Author: Ramon C. Gonzales - (c) 2013, for Virtru Corporation
+Author: 
 ----------------------
+Ramon C. Gonzales - (c) 2013, for Virtru Corporation
 
