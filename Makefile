@@ -1,8 +1,6 @@
 
-build: modal-template.js css-build lib/*.js components
+build: modal-template.js lib/*.js components
 	@component build
-
-css-build: css/overlay.css css/virtru.css
 
 modal-template.js: templates/modal-template.html
 	@component convert $<
