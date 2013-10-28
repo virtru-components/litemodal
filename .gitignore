@@ -66,6 +66,10 @@ legacy
 *.html.js
 *.xml.js
 
+# Add special files and paths
+.project
+tobe-deleted
+
 # Add certain temporary paths and files
 build.save
 err_build.log

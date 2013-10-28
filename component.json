@@ -17,9 +17,5 @@
   ],
   "testScripts": [
     "tests/index.js"
-  ],
-  "styles": [
-    "css/overlay.css",
-    "css/virtru.css"
   ]
 }
