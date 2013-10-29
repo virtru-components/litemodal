@@ -12,8 +12,7 @@
     "lib/container.js",
     "lib/frame.js",
     "lib/index.js", 
-    "lib/overlay.js",
-    "templates/modal-template.js"
+    "lib/overlay.js"
   ],
   "testScripts": [
     "tests/index.js"
